@@ -82,31 +82,46 @@ $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
 
 /** datos****/
 
-$tipo ='       OFICIO';
+$tipo ='<strong>OFICIO</strong>';
+$pdf->writeHTML( $tipo, true, false, true, false, "C");
 
-$pdf->Cell(0, 15, ' OFICIO ', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+//$pdf->Cell(0, 15, ' <strong>OFICIO</strong> ', 0, false, 'C', 0, '', 0, false, 'M', 'M');
 
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 
-$encabezado ='                              San Juan, '.$dia.' .-';
+$encabezado ='<strong>                              San Juan, '.$dia.'.</strong>';
 
 $pdf->writeHTML( utf8_encode($encabezado), true, false, true, false, "R");
 
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 
 //$destinatario='AL SR. JEFE DE POLICIA DE LA PROVINCIA DE SAN JUAN '.$comisaria.'.';
-$destinatario='AL SR. JEFE DE POLICIA DE LA PROVINCIA DE SAN JUAN.';
+$destinatario='<strong>SR. JEFE DE</strong>  ';
 
-$pdf->writeHTML( utf8_encode($destinatario), true, false, true, false);
-
+$pdf->writeHTML( $destinatario, true, false, true, false);
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 
-$nota='                                        Me dirijo a Ud. y por su intermedio ante quien corresponda, a fin de remitir a la comisaria que corresponda el listado de las personas que están declaradas como rebeldes y a las cuales debe traer para hacer comparecer  por ante este Juzgado de Faltas de Tercera Nominación.-';
+$destinatario2='<strong>POLICIA DE SAN JUAN</strong>';
+
+$pdf->writeHTML( $destinatario2, true, false, true, false);
+
+$pdf->writeHTML( 'S.___________/___________D.', true, false, true, false);
+
+
+
+$pdf->writeHTML( '<span></span>', true, false, true, false);  
+$pdf->writeHTML( '<span></span>', true, false, true, false);
+
+
+$notaAntes='                                        Me dirijo a Ud. y por su intermedio ante quien corresponda, a fin de remitir a la comisaria que corresponda el listado de las personas que están declaradas como rebeldes y a las cuales debe traer para hacer comparecer  por ante este Juzgado de Faltas de Tercera Nominación.-';
+
+
+$nota='                                        Me dirijo a Ud. a fin de remitir un listado de rebeldías que se encuentran vigentes en este Juzgado de Faltas, a los fines de que comparezcan con la fuerza pública para que tengan su debido proceso.';
+
 
 $pdf->MultiCell(0, 0,''.$nota."\n", 0,'J', 1, 2, '' ,'', true);
-
 
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 $pdf->writeHTML( '<span></span>', true, false, true, false);
@@ -147,7 +162,7 @@ foreach($datos as $item)
 }
 $pdf->writeHTML( '<span></span>', true, false, true, false);
 $fin ='Le saludo muy atentamente.-';
-$pdf->writeHTML( utf8_encode($fin), true, false, true, false, "R");
+$pdf->writeHTML( utf8_encode($fin), true, false, true, false, "C");
 // ---------- Actualizar el estado-----------------------------------------------
 $datos = $objeto->actualizarEstado($listado_comisaria_id,"Impreso");
 //Close and output PDF document
